@@ -1,0 +1,130 @@
+//learning outcomes...
+//arrays, dynamic memory allocation, function with multiple returns , call by reference.
+//
+
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+//to swap
+void swap(int &a , int &b) 
+    {
+       int t= a;
+       a=b;
+       b=t;
+
+    }
+
+
+//to sort any array
+void bubblesort(int array[] , int size) {
+       
+	for (int i =0; i < size -1; i++)
+	{
+		for (int j=0; j < size - i - 1; j ++)
+		{
+                    if (array[j] > array[j+1])
+		    {
+                       swap(array[j], array[j+1]);
+		    }
+	}
+}
+
+}
+
+//TO print arrays
+void printarrays(int array[], int size) {
+
+        	for (int i = 0; i < size; i++){
+                     cout<<array[i]<<"  ";
+	}
+
+}
+
+//to fill array of size s with random number with some range- 1- maximum number
+void fillarray(int array[], int size, int range) {
+     srand(time(0));
+       for (int i = 0 ; i<size ; i++){
+           array[i]= rand() % range + 1;
+       }
+}
+
+
+double mean (int array[], int size){
+        int s;
+	int sum;
+	double mean1;
+	for(int i =0; i<s; i++){
+        sum += array[i];
+	}
+        mean1= sum / size;
+
+	return mean1;
+
+}
+
+
+
+
+
+
+int main(){
+
+//declarations
+     
+       int array1[20];
+       int s;
+       //size is allacatable, will be get from interactive user input
+       cout<<"Enter the size of the dynamic array"<<endl;
+       cin>>s;
+       int dynamicarray1 = new int[s];
+       
+
+       double meanda1;
+
+//task1 array of fixed size 20//  sort and print
+           
+      fillarray(array1, 20, 100);
+      cout<<"random array of size 20"<<endl;
+      cout<< "[ ";
+      printarrays(array1, 20);
+      cout<< " ]"<<endl;
+      bubblesort(array1, 20);
+      cout<<"sorted array of size 20"<<endl;
+      cout<<"[ ";
+      printarrays(array1,20);
+      cout<<" ]"<<endl<<endl;
+    
+//task2 dynamic array- mean and standard deviation
+        
+
+       fillarray(dynamicarray1, s , 50);
+       
+
+      cout<<"dynamic array of size "<< s <<endl;
+      cout<< "[ ";
+      printarrays(dynamicarray1, s);
+      cout<< " ]"<<endl;
+
+      meanda1 = mean(dynamicarray1 , s);
+      cout<<"The mean of the dynamicarray of entered size is"<<endl;
+      cout<<meanda1<<endl;
+
+      
+
+
+
+
+
+
+
+  delete [] dynamicarray1;
+
+    return 0;
+
+}
+        
+
