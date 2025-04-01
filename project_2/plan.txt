@@ -1,0 +1,16 @@
+1) create a vecNd  and matrixNN clasess header files.
+private , vector and size
+public construcot , initiase copy for special case 2,3 d
+print()
+getter
+setter
+
+class members
+operation + - 
+vector .
+vector x  (2,3,d)
+vector matrix
+matrix matrix
+matrix determinat 
+matrix inverse
+
