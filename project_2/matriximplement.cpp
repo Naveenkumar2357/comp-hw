@@ -1,6 +1,7 @@
 #include "matrixNN.h"
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 using namespace std;
 
 //default initialisation
@@ -10,20 +11,33 @@ matrixNN::matrixNN() {
 }
 
 //special order2 and 3 null initialisation
-matrixNN::matrixNN(2) {
-    N = 2 ;
-    A = {{0.0,0.0},{0.0,0.0}}; 
-}
+matrixNN::matrixNN(int n) {
+	N=n;
+	A = vector<vector<double>>(n, vector<double>(n, 0.0));
+ for(int i=0;i<n;i++){
+ for (int j=0;j<n;j++){
 
-matrixNN::matrixNN(3) {
-    N = 3 ;
-    A = {{0.0,0.0,0.0},{0.0,0.0,0.0}}; 
+    setAnn(i,j,0.0);
+ }}
+    
 }
 
 //special user defined 2 and 3 d values
 
-   void matrixNN::defmat2d(double A00, double A01, double A10, double A11): N(2), A({{A00,A01},{A10,A11}}) {}
-   void matrixNN::defmat3d(double A00, double A01, double A02, double A10, double A11, double A12, double A20, double A21, double A22);
+matrixNN matrixNN::defmat2d(double A00, double A01, double A10, double A11){
+
+	   matrixNN C;
+	   C.N=2;
+	   C.A={{A00,A01},{A10,A11}};
+	   return C;
+	   }
+   
+matrixNN matrixNN::defmat3d(double A00, double A01, double A02, double A10, double A11, double A12, double A20, double A21, double A22){
+	   matrixNN C;
+	   C.N=3;
+	   C.A={{A00,A01,A02},{A10,A11,A12},{A20,A21,A22}};
+	   return C;
+   }
 
 // User-defined initialization 
 matrixNN::matrixNN(int size, vector<vector<double>> &B) {
@@ -33,7 +47,6 @@ matrixNN::matrixNN(int size, vector<vector<double>> &B) {
 
 //deconstructor
 matrixNN::~matrixNN(){}
-
 
 
 
@@ -153,7 +166,7 @@ vecNd matrixNN::operator*(vecNd &b) {
         throw invalid_argument("Matrix-vector multiplication not possible: size mismatch.");
     }
 
-    vecNd C(N);
+    vecNd C;
 
     for (int i = 0; i < N; ++i) {
         double sum = 0.0;
@@ -227,7 +240,8 @@ double matrixNN::det(matrixNN &B) {
         // Calculate the term for this permutation
         double term = 1.0;
         for (int i = 0; i < n; i++) {
-            term *= B[i][levi[i]];  // // // A_0i A_1j A_2k , the first index for the matrix is fixed by loop index , second index is given by the elements of levi vector
+		int dummy =levi[i]  ;// actually this is my actual line{ term *= B[i][levi[i]];}  [][][] there brackets not working, so defining a dummy here
+            term *= B.getAnn(i,dummy);     // // // A_:0i A_1j A_2k , the first index for the matrix is fixed by loop index , second index is given by the elements of levi vector
         }
 
         // Add sign*term

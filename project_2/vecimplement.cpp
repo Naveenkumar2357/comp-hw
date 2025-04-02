@@ -31,6 +31,17 @@ void vecNd::setai(int ith, double value) {
     a[ith] = value;
 }
 
+
+
+int vecNd::size(){
+
+  return a.size();
+
+}
+
+
+
+
 // Print function
 void vecNd::print() {
     cout << "(";
@@ -47,7 +58,7 @@ void vecNd::print() {
 vecNd vecNd::operator+(vecNd& b) {
     if (a.size() != b.a.size()) {
         cout << "Vectors must have the same dimension for addition" << endl;
-        exit(); 
+        exit(1); 
     }
 
     vecNd c; // Result vector
@@ -62,7 +73,7 @@ vecNd vecNd::operator+(vecNd& b) {
 vecNd vecNd::operator-(vecNd& b) {
     if (a.size() != b.a.size()) {
         cout << "Vectors must have the same dimension for subtraction" << endl;
-        exit(); 
+        exit(1); 
     }
 
     vecNd c; 
@@ -87,7 +98,7 @@ vecNd vecNd::operator*(double k) {
 double vecNd::operator|(vecNd& b) {
     if (a.size() != b.a.size()) {
         cout << "Vectors must have the same size for dot product!" << endl;
-        exit();
+        exit(1);
     }
 
     double c = 0; 
@@ -99,10 +110,10 @@ double vecNd::operator|(vecNd& b) {
 }
 
 // Cross product (only valid for 3d vectors)
-vecNd vecNd::operator X(vecNd& b) {
+vecNd vecNd::operator*(vecNd& b) {
     if (a.size() != 3 || b.a.size() != 3) {
         cout << "In this program Cross product is only defined for 3D vectors." << endl;
-        exit();
+        exit(1);
     }
 
     vecNd c; // Result vector

@@ -29,22 +29,22 @@ class matrixNN {
 
 
         //special order2 and 3 null initialisation
-        matrixNN(2); 
-        matrixNN(3);
+        matrixNN(int n); 
+        
         //special user defined 2 and 3 d values
-        void defmat2d(double A00, double A01, double A10, double A11);
-        void defmat3d(double A00, double A01, double A02, double A10, double A11, double A12, double A20, double A21, double A22);
+        matrixNN defmat2d(double A00, double A01, double A10, double A11);
+        matrixNN defmat3d(double A00, double A01, double A02, double A10, double A11, double A12, double A20, double A21, double A22);
 
          //deconstructor
 	 ~matrixNN();
 
 	 //Getter and setter
 
-	 vector<<vector<double>> getA() ;  //getting matrix A as a whole object
+	 vector<vector<double>> getA() ;  //getting matrix A as a whole object
          vector<double> getAn(int r);	   //getting a row in A
 	 double getAnn(int r, int c );	   //getting any element of matrix A
 			
-	 void setA(vector<vector<double>> &B); setting //setting a new object A equal to defined matrixNN object B
+	 void setA(vector<vector<double>> &B);  //setting a new object A equal to defined matrixNN object B
          void setAn(int r, vector<double> &b);         // setting an array b in the n th row of A
 	 void setAnn(int r, int c, double Ann);	   // setting an element Ann of A
 					
@@ -57,11 +57,11 @@ class matrixNN {
          matrixNN operator+(matrixNN &B);  //adding two matrices, check the two matrix is have samesize
 	 matrixNN operator-(matrixNN &B);  //subrating two matrices, after checking the dimensions
          matrixNN operator*(matrixNN &B);  //matrix multiplication A*B, check coloumn of A is equal to row of B 
-         vecNd operator*(vectorNd &b);  //matrix multiplied by vector  (A*a) //take a as column vector// check size of A is equalto size of a
+         vecNd operator*(vecNd &b);  //matrix multiplied by vector  (A*a) //take a as column vector// check size of A is equalto size of a
          
 	 
 	 matrixNN Trans(matrixNN &B);  //Transpose of B
-         matrixNN det(matrixNN &B);    //determinant of B
+         double det(matrixNN &B);    //determinant of B
 	 matrixNN inv(matrixNN &B);    //inverse of B // check first determinat is non zero
 				       
 };
@@ -107,4 +107,4 @@ class matrixNN {
 
 
 
-}
+

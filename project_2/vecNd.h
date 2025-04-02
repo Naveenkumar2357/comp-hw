@@ -26,6 +26,9 @@ class vecNd{
                void seta( vector<double> &b ); //setting a vector object b as a
                void setai(int ith, double value);// setting value for element ai of a
 
+
+
+	       int size();
                // Print function
                void print() ;
 
@@ -33,8 +36,8 @@ class vecNd{
               vecNd operator+(vecNd &b) ;  //addition of two vectors // note that b is an another object , to access the vector in the b {use b.a} 
               vecNd operator-(vecNd &b) ;  //subtraction of two vectors
               vecNd operator*(double k) ;//multiplication by a scalar
-	      vecNd operator|(vecNd &b)      //vector dot product
-              vecNd operator X(vecNd &b) ;      //vector cross product    don't use X as a variable in this program
+	      double operator|(vecNd &b) ;     //vector dot product
+              vecNd operator*(vecNd &b) ;      //vector cross product    don't use X as a variable in this program
 };
  	        
 
