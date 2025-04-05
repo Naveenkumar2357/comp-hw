@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 //default initialisation
@@ -253,5 +254,81 @@ double matrixNN::det(matrixNN &B) {
 }
 
 
+//to find inverse
+//invA = (1/ detA) (adj A)
+//writing two function co factor and adjoint of A works within this class just to find inv
+	
 
- 
+
+
+//vector minor to matrix minor(it will convert a N^2 vector into N X N matrix)
+matrixNN vectortomatrix(vector<double> b){
+	int n_minor=sqrt(b.size());   // the vector of minor N*N elemets
+        matrixNN B(n_minor);  //(B is the all possible minor of A ) initialise null minor matrix for each element
+        for(int i=0; i<n_minor; i++)
+	{
+	  for(int j=0; j<n_minor; j++)
+	  {
+	    B.setAnn(i,j,b[j + n_minor*i]);
+          }
+        }
+
+     return B;
+}
+
+matrixNN matrixNN::cofactor(matrixNN &A)
+{ 
+   int n=A.size();
+   matrixNN cofactorA(n);
+
+	     
+for(int i=0; i<n; i++)
+  {
+   for(int j=0;j<n; j++)
+    {
+     vector<double> b;  
+   
+
+     for(int k=0; k<n; k++)
+         {
+         for(int l=0; l<n; l++) 
+	   {
+         if(i !=k and j!=l) 
+	     {
+	   b.push_back(A.getAnn(k,l));
+	     }    		       
+           }
+         }
+     
+     matrixNN B = vectortomatrix(b);
+     cofactorA.setAnn(i,j,(pow((-1),i+j) * B.det(B))); 
+     }
+   }
+
+    return cofactorA;
+}
+
+matrixNN matrixNN::inv(matrixNN &A){
+        //initialising required matrices structure
+	int n=A.size();
+	matrixNN invA(n);
+        matrixNN adjointA(n);
+	matrixNN cofactorA(n);
+	
+
+
+	//finding cofactor and adjoint using defined functions
+	cofactorA=cofactorA.cofactor(A);
+	adjointA = cofactorA.Trans(cofactorA);
+        double factor= (1/A.det(A));	
+        
+		for(int i=0; i<n; i++){
+                      for(int j=0; j<n; j++){
+                             invA.setAnn(i,j,(factor * adjointA.getAnn(i,j)));
+		      }
+		}
+
+		return invA;
+
+}
+

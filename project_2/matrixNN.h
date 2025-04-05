@@ -59,10 +59,10 @@ class matrixNN {
          matrixNN operator*(matrixNN &B);  //matrix multiplication A*B, check coloumn of A is equal to row of B 
          vecNd operator*(vecNd &b);  //matrix multiplied by vector  (A*a) //take a as column vector// check size of A is equalto size of a
          
-	 
+	 matrixNN cofactor(matrixNN &A); 
 	 matrixNN Trans(matrixNN &B);  //Transpose of B
          double det(matrixNN &B);    //determinant of B
-	 matrixNN inv(matrixNN &B);    //inverse of B // check first determinat is non zero
+	 matrixNN inv(matrixNN &A);    //inverse of B // check first determinat is non zero
 				       
 };
 	 
