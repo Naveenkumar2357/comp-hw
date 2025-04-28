@@ -1,7 +1,7 @@
 #include <iostream>
 #include "matrixNN.h"
 #include <vector>
-//#include "vecNd.h"
+#include "vecNd.h"
 
 using namespace std;
 

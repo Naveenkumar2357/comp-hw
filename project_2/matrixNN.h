@@ -1,3 +1,7 @@
+#ifndef MATRIX
+#define MATRIX
+
+
 #include <iostream>
 #include <vector>
 #include "vecNd.h"
@@ -67,7 +71,7 @@ class matrixNN {
 };
 	 
 	
- 
+#endif
 
 
 
